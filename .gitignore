@@ -1,6 +1,8 @@
 .envrc
+
+# Terraform
 .terraform
 .terraform.lock.hcl
-.tfvars
+*.tfvars
 *.tfstate
 *.tfstate.*
