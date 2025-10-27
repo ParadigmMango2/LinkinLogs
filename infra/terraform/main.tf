@@ -1,8 +1,12 @@
 terraform {
   required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "6.14.1"
+    minikube = {
+      source = "scott-the-programmer/minikube"
+      version = "0.6.0"
+    }
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.38.0"
     }
   }
 }

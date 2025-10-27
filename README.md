@@ -2,16 +2,10 @@
 ## Architecture
 ## Project Checklist
 - [x] Set up basic project structure
-- [ ] Local development and dockerization
-    - [ ] k8s setup
-    - [ ] Set up DB
-    - [ ] Set up Spring Boot apps
-    - [ ] Set up Angular
-- [ ] AWS setup
-    - [ ] Provision VPC
-    - [ ] Provision EKS
-    - [ ] Set up IAM and other permissions
-    - [ ] k8s charts
-    - [ ] Ansible + eksctl
+- [ ] Set up minikube with Terraform IaC
+- [ ] Set up first microservice
 - [ ] Jenkins CI/CD
+- [ ] Have first microservice communicate with outside, preferably an API
+- [ ] Build frontend 
+- [ ] Build other microservices
 ## Deployment
