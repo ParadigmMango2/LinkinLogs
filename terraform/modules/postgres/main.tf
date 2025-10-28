@@ -1,6 +1,6 @@
 resource "helm_release" "postgres" {
-  name       = "postgres-jenkins"
+  name       = var.name
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "postgresql"
-  namespace  = "jenkins-ns"
+  namespace  = var.namespace
 }

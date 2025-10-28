@@ -1,0 +1,14 @@
+global:
+  storageClass: "standard"
+
+primary:
+  persistence:
+    size: "1Gi"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+
+postgresqlUsername: ${postgres_user}
+postgresqlPassword: ${postgres_password}
+postgresqlDatabase: ${postgres_db}
