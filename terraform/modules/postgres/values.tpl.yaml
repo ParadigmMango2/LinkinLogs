@@ -1,6 +1,3 @@
-global:
-  storageClass: "standard"
-
 primary:
   persistence:
     size: "1Gi"
@@ -9,6 +6,7 @@ primary:
       memory: "256Mi"
       cpu: "250m"
 
-postgresqlUsername: ${postgres_user}
-postgresqlPassword: ${postgres_password}
-postgresqlDatabase: ${postgres_db}
+auth:
+  username: ${postgres_user}
+  password: ${postgres_password}
+  database: ${postgres_db}
