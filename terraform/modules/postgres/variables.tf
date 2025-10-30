@@ -6,6 +6,11 @@ variable "namespace" {
   type = string
 }
 
+variable "admin_password" {
+  type = string
+  sensitive = true
+}
+
 variable "postgres_user" {
   type = string
 }
