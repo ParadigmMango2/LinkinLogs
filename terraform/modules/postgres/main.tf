@@ -6,9 +6,9 @@ resource "helm_release" "postgres" {
 
   values = [
     templatefile("${path.module}/values.tpl.yaml", {
-      postgres_user = "jenkins_user"
-      postgres_password = "example"
-      postgres_db = "jenkins_db"
+      postgres_user = var.postgres_user
+      postgres_password = var.postgres_password
+      postgres_db = var.postgres_db
     })
   ]
 }
