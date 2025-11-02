@@ -3,7 +3,10 @@ FROM maven:3.9-eclipse-temurin-21 AS builder
 WORKDIR /build
 COPY . ./services/jenkinswatcher
 WORKDIR /build/services/jenkinswatcher
-RUN ./mvnw -B package -DskipTests
+RUN --mount=type=cache,target=/root/.m2 \
+    ./mvnw -B dependency:go-offline
+RUN --mount=type=cache,target=/root/.m2 \
+    ./mvnw -B package -DskipTests
 
 # Run Stage
 FROM eclipse-temurin:21-jdk
