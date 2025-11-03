@@ -15,3 +15,7 @@ module "postgres-jenkins" {
   postgres_password = var.jenkins_db_password
   postgres_db = "jenkins-db"
 }
+
+module "jenkins" {
+  source = "./modules/jenkinswatcher"
+}

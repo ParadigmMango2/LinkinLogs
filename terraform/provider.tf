@@ -12,6 +12,10 @@ terraform {
       source = "hashicorp/helm"
       version = "3.1.0"
     }
+    null = {
+      source = "hashicorp/null"
+      version = "3.2.4"
+    }
   }
 }
 
@@ -34,4 +38,8 @@ provider "helm" {
     client_key = minikube_cluster.docker.client_key
     cluster_ca_certificate = minikube_cluster.docker.cluster_ca_certificate
   }
+}
+
+provider "null" {
+  # Configuration options
 }
