@@ -15,7 +15,7 @@ minikube start --driver=docker
 
 docker build -t jenkinswatcher:dev ${path.root}/../services/jenkinswatcher
 
-minikube image load jenkinswatcher:dev
+minikube image load jenkinswatcher:dev --profile tf-minikube-cluster
 EOT
   }
 }

@@ -18,4 +18,6 @@ module "postgres-jenkins" {
 
 module "jenkins" {
   source = "./modules/jenkinswatcher"
+  replicas = 2
+  depends_on = [ minikube_cluster.docker ]
 }
