@@ -3,8 +3,11 @@ data "kubernetes_service" "postgres_svc" {
     name = "${var.name}-postgresql"
     namespace = var.namespace
   }
+
+  depends_on = [ helm_release.postgres ]
 }
 
+# For import to spring boot pod shell environments
 resource "kubernetes_secret" "postgres" {
   metadata {
     name = "${var.name}-credentials"
@@ -12,10 +15,10 @@ resource "kubernetes_secret" "postgres" {
   }
 
   data = {
-    username = var.postgres_user
-    password = var.postgres_password
-    database = var.postgres_db
-    host = data.kubernetes_service.postgres_svc.spec[0].cluster_ip
+    DB_USER = var.postgres_user
+    DB_PASSWORD = var.postgres_password
+    DB_NAME = var.postgres_db
+    DB_HOST = data.kubernetes_service.postgres_svc.spec[0].cluster_ip
   }
 
   type = "Opaque"

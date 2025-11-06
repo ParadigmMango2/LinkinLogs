@@ -14,10 +14,12 @@ module "postgres-jenkins" {
   postgres_user = "jenkins-user"
   postgres_password = var.jenkins_db_password
   postgres_db = "jenkins-db"
+  depends_on = [ minikube_cluster.docker ]
 }
 
 module "jenkins" {
   source = "./modules/jenkinswatcher"
   replicas = 2
-  depends_on = [ minikube_cluster.docker ]
+  pg_secret = module.postgres-jenkins.pg_secret
+  depends_on = [ minikube_cluster.docker, module.postgres-jenkins.pg_secret ]
 }

@@ -27,6 +27,11 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           port {
             container_port = 8080
           }
+          env_from {
+            secret_ref {
+              name = var.pg_secret.metadata[0].name
+            }
+          }
         }
       }
     }
