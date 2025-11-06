@@ -22,7 +22,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
       }
       spec {
         container {
-          name  = "jenkinswatcher"
+          name = "jenkinswatcher"
           image = "jenkinswatcher:dev"
           port {
             container_port = 8080
@@ -45,7 +45,7 @@ resource "kubernetes_service" "jenkins-svc" {
       app = "jenkinswatcher"
     }
     port {
-      port        = 8080
+      port = 8080
       target_port = 8080
     }
     type = "ClusterIP"
