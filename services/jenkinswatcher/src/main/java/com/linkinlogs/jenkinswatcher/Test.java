@@ -13,8 +13,8 @@ import java.util.List;
 @RequestMapping("/test")
 class Test {
   private JenkinsClient client = JenkinsClient.builder()
-        .endPoint("http://localhost:9090")
-        .apiToken("admin:examplepwd")
+        .endPoint(String.format("%s://%s:%s", System.getenv("JENKINS_PROTOCOL"), System.getenv("JENKINS_URL"), System.getenv("JENKINS_PORT")))
+        .apiToken(String.format("%s:%s", System.getenv("JENKINS_USER"), System.getenv("JENKINS_TOKEN")))
         .build();
 
   @GetMapping("/jobs")
