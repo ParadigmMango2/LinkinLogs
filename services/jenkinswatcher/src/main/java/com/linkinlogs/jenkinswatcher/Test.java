@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/test")
-class Test {
+public class Test {
   private JenkinsClient client = JenkinsClient.builder()
         .endPoint(String.format("%s://%s:%s", System.getenv("JENKINS_PROTOCOL"), System.getenv("JENKINS_URL"), System.getenv("JENKINS_PORT")))
         .apiToken(String.format("%s:%s", System.getenv("JENKINS_USER"), System.getenv("JENKINS_TOKEN")))
