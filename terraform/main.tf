@@ -20,6 +20,12 @@ module "postgres-jenkins" {
 module "jenkins" {
   source = "./modules/jenkinswatcher"
   replicas = 2
+  namespace = "jenkins-ns"
   pg_secret = module.postgres-jenkins.pg_secret
+  jenkins_protocol = var.jenkins_protocol
+  jenkins_url = var.jenkins_url
+  jenkins_port = var.jenkins_port
+  jenkins_user = var.jenkins_user
+  jenkins_token = var.jenkins_token
   depends_on = [ minikube_cluster.docker, module.postgres-jenkins.pg_secret ]
 }

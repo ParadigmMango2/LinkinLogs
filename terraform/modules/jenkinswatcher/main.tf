@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "jenkins-deployment" {
   metadata {
     name = "jenkinswatcher"
-    namespace = "jenkins-ns"
+    namespace = var.namespace
     labels = {
       app = "jenkinswatcher"
     }
@@ -32,17 +32,22 @@ resource "kubernetes_deployment" "jenkins-deployment" {
               name = var.pg_secret.metadata[0].name
             }
           }
+          env_from {
+            secret_ref {
+              name = kubernetes_secret.jenkins_credentials.metadata[0].name
+            }
+          }
         }
       }
     }
   }
-  depends_on = [ null_resource.build_and_load_image ]
+  depends_on = [ null_resource.build_and_load_image, kubernetes_secret.jenkins_credentials ]
 }
 
 resource "kubernetes_service" "jenkins-svc" {
   metadata {
     name = "jenkinswatcher-svc"
-    namespace = "jenkins-ns"
+    namespace = var.namespace
   }
 
   spec {
