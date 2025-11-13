@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -18,7 +19,10 @@ public class Test {
         .build();
 
   @GetMapping("/jobs")
-  public List<Job> getJobs() {
-    return client.api().jobsApi().jobList("").jobs();
+  public List<JobDTO> getJobs() {
+    List<Job> jobs = client.api().jobsApi().jobList("").jobs();
+    return jobs.stream()
+        .map(JobDTO::fromJob)
+        .collect(Collectors.toList());
   }
 }
