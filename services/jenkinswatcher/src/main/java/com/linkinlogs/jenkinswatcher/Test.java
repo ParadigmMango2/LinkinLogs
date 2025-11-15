@@ -2,7 +2,7 @@ package com.linkinlogs.jenkinswatcher;
 
 import com.cdancy.jenkins.rest.JenkinsClient;
 import com.cdancy.jenkins.rest.domain.job.Job;
-import com.linkinlogs.jenkinswatcher.DTO.JobDTO;
+import com.linkinlogs.jenkinswatcher.dto.JobDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

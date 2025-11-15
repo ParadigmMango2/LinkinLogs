@@ -1,7 +1,6 @@
-package com.linkinlogs.jenkinswatcher.DTO;
+package com.linkinlogs.jenkinswatcher.dto;
 
 import com.cdancy.jenkins.rest.domain.job.Job;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
