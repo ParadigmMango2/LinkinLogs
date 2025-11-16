@@ -1,6 +1,7 @@
 package com.linkinlogs.jenkinswatcher.dto;
 
 import com.cdancy.jenkins.rest.domain.job.Job;
+import com.linkinlogs.jenkinswatcher.model.JobModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,17 @@ public class JobDTO {
         dto.setColor(job.color());
         dto.setClazz(job.clazz());
         return dto;
+    }
+
+    public static JobModel toModel(JobDTO dto) {
+        if (dto == null) return null;
+
+        JobModel model = new JobModel();
+        model.setName(dto.getName());
+        model.setUrl(dto.getUrl());
+        model.setColor(dto.getColor());
+        model.setClazz(dto.getClazz());
+        return model;
     }
 }
 

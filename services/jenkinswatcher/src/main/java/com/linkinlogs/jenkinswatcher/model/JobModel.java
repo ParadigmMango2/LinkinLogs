@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Job {
+public class JobModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
