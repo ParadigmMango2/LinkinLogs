@@ -21,6 +21,18 @@ public class JobService {
     @Autowired
     JenkinsClient jenkinsClient;
 
+    public ResponseEntity<List<JobModel>> fetchJobs() {
+        List<Job> jobs = jenkinsClient.api().jobsApi().jobList("").jobs();
+        List<JobModel> jobModels = jobs.stream()
+                .map(JobDTO::fromJob)
+                .map(JobDTO::toModel)
+                .collect(Collectors.toList());
+
+        jobDAO.saveAll(jobModels);
+
+        return new ResponseEntity<>(jobModels, HttpStatus.OK);
+    }
+
     public ResponseEntity<List<JobModel>> getJobs() {
         List<Job> jobs = jenkinsClient.api().jobsApi().jobList("").jobs();
         List<JobModel> jobModels = jobs.stream()

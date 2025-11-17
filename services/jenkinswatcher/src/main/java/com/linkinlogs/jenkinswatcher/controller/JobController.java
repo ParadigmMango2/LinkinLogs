@@ -5,6 +5,7 @@ import com.linkinlogs.jenkinswatcher.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,10 @@ public class JobController {
     @GetMapping("")
     public ResponseEntity<List<JobModel>> getAllJobs() {
         return jobService.getJobs();
+    }
+
+    @PostMapping("fetch")
+    public ResponseEntity<List<JobModel>> fetchJobs() {
+        return jobService.fetchJobs();
     }
 }
