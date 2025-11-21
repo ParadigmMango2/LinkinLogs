@@ -5,6 +5,8 @@ import com.linkinlogs.jenkinswatcher.model.JobModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 public class JobDTO {
@@ -24,7 +26,7 @@ public class JobDTO {
         return dto;
     }
 
-    public static JobModel toModel(JobDTO dto) {
+    public static JobModel toModel(JobDTO dto, LocalDateTime fetchedTime) {
         if (dto == null) return null;
 
         JobModel model = new JobModel();
@@ -32,6 +34,7 @@ public class JobDTO {
         model.setUrl(dto.getUrl());
         model.setColor(dto.getColor());
         model.setClazz(dto.getClazz());
+        model.setFetchedTime(fetchedTime);
         return model;
     }
 }

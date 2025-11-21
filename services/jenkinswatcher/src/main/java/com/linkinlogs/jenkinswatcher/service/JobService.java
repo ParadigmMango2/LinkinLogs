@@ -6,10 +6,10 @@ import com.linkinlogs.jenkinswatcher.dao.JobDAO;
 import com.linkinlogs.jenkinswatcher.dto.JobDTO;
 import com.linkinlogs.jenkinswatcher.model.JobModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,23 +22,21 @@ public class JobService {
     JenkinsClient jenkinsClient;
 
     public ResponseEntity<List<JobModel>> fetchJobs() {
+        LocalDateTime fetchedTime = LocalDateTime.now();
+
         List<Job> jobs = jenkinsClient.api().jobsApi().jobList("").jobs();
         List<JobModel> jobModels = jobs.stream()
                 .map(JobDTO::fromJob)
-                .map(JobDTO::toModel)
+                .map(dto -> JobDTO.toModel(dto, fetchedTime))
                 .collect(Collectors.toList());
 
         jobDAO.saveAll(jobModels);
 
-        return new ResponseEntity<>(jobModels, HttpStatus.OK);
+        return ResponseEntity.ok(jobModels);
     }
 
     public ResponseEntity<List<JobModel>> getJobs() {
-        List<Job> jobs = jenkinsClient.api().jobsApi().jobList("").jobs();
-        List<JobModel> jobModels = jobs.stream()
-                .map(JobDTO::fromJob)
-                .map(JobDTO::toModel)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(jobModels, HttpStatus.OK);
+        List<JobModel> jobModels = jobDAO.findAll();
+        return ResponseEntity.ok(jobModels);
     }
 }
