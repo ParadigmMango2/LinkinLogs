@@ -37,6 +37,13 @@ public class JobService {
 
     public ResponseEntity<List<JobModel>> getJobs() {
         List<JobModel> jobModels = jobDAO.findAll();
+
+        for (JobModel jobModel : jobModels) {
+            String configXml = jenkinsClient.api().jobsApi().config(null, jobModel.getName());
+
+            System.out.println(configXml);
+        }
+
         return ResponseEntity.ok(jobModels);
     }
 }

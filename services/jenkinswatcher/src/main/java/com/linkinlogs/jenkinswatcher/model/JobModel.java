@@ -17,6 +17,8 @@ public class JobModel {
     private String name;
     private String url;
     private String color;
+
+    @Column(name = "class")
     private String clazz;
 
     @Column(name = "fetched_time")
