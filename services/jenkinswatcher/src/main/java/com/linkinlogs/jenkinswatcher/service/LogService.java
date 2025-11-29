@@ -25,16 +25,12 @@ public class LogService {
     @Autowired
     LogDAO logDAO;
 
+    @Autowired
+    Connection jenkinsConnection;
+
     @SneakyThrows
     public ResponseEntity<List<LogModel>> fetchLogs() {
-        String credentials = System.getenv("JENKINS_USER") + ":" + System.getenv("JENKINS_TOKEN");
-        String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
-        Connection connection = Jsoup.connect(
-                        String.format("%s://%s:%s/log", System.getenv("JENKINS_PROTOCOL"),
-                                System.getenv("JENKINS_URL"), System.getenv("JENKINS_PORT")))
-                .header("Authorization", "Basic " + encodedCredentials);
-
-        Document doc = connection.get();
+        Document doc = jenkinsConnection.get();
 
         Elements logLinks = doc.select("#logRecorders .jenkins-table__link");
 
