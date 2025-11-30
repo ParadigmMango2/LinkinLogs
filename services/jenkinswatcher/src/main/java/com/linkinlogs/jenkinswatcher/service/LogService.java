@@ -60,7 +60,7 @@ public class LogService {
         return ResponseEntity.ok(logs);
     }
 
-    public ResponseEntity<String> getLogs() {
+    public ResponseEntity<String> getLog() {
         try {
             Path logPath = Paths.get("logs/app.log");
             String logContent = Files.readString(logPath);
@@ -68,6 +68,12 @@ public class LogService {
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Error reading log file: " + e.getMessage());
         }
+    }
+
+    public ResponseEntity<List<LogModel>> getLogs() {
+        List<LogModel> logModels = logDAO.findAll();
+
+        return ResponseEntity.ok(logModels);
     }
 }
 

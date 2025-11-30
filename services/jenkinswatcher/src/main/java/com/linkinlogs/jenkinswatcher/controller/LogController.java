@@ -17,13 +17,18 @@ public class LogController {
     LogService logService;
 
     @GetMapping("")
-    public ResponseEntity<String> getLogs() {
-        return logService.getLogs();
+    public ResponseEntity<String> getLog() {
+        return logService.getLog();
     }
 
     @GetMapping("fetch")
     public ResponseEntity<List<LogModel>> fetchLogs() {
         return logService.fetchLogs();
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<LogModel>> getLogs() {
+        return logService.getLogs();
     }
 }
 
