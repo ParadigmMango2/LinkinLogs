@@ -1,7 +1,7 @@
 package com.linkinlogs.jenkinswatcher.config;
 
 import com.cdancy.jenkins.rest.JenkinsClient;
-import org.jsoup.Connection;
+import com.linkinlogs.jenkinswatcher.factory.JenkinsConnectionFactory;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -35,11 +35,11 @@ public class JenkinsConfig {
     }
 
     @Bean
-    public Connection jenkinsConnection() {
-        String credentials = System.getenv("JENKINS_USER") + ":" + System.getenv("JENKINS_TOKEN");
+    public JenkinsConnectionFactory jenkinsConnectionFactory() {
+        String baseUrl = String.format("%s://%s:%s", protocol, url, port);
+        String credentials = user + ":" + token;
         String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
 
-        return Jsoup.connect(String.format("%s://%s:%s/log", protocol, url, port))
-                .header("Authorization", "Basic " + encodedCredentials);
+        return new JenkinsConnectionFactory(baseUrl, encodedCredentials);
     }
 }

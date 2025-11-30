@@ -1,10 +1,10 @@
 package com.linkinlogs.jenkinswatcher.service;
 
 import com.linkinlogs.jenkinswatcher.dao.LogDAO;
+import com.linkinlogs.jenkinswatcher.factory.JenkinsConnectionFactory;
 import com.linkinlogs.jenkinswatcher.model.LogModel;
 import lombok.SneakyThrows;
 import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -17,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -26,11 +25,13 @@ public class LogService {
     LogDAO logDAO;
 
     @Autowired
-    Connection jenkinsConnection;
+    JenkinsConnectionFactory jenkinsConnectionFactory;
 
     @SneakyThrows
     public ResponseEntity<List<LogModel>> fetchLogs() {
-        Document doc = jenkinsConnection.get();
+        Connection connection = jenkinsConnectionFactory.createConnection("/log");
+
+        Document doc = connection.get();
 
         Elements logLinks = doc.select("#logRecorders .jenkins-table__link");
 

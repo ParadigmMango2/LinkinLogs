@@ -33,6 +33,8 @@ public class JenkinswatcherApplication {
 
             Document doc = connection.get();
 
+            System.out.println(connection.request().url().toString());
+
             Elements logLinks = doc.select("#logRecorders .jenkins-table__link");
 
             System.out.println(logLinks);
