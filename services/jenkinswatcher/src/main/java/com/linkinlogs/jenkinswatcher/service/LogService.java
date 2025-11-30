@@ -38,9 +38,19 @@ public class LogService {
         ArrayList<LogModel> logs = new ArrayList<LogModel>();
 
         for (Element logLink : logLinks) {
+            String href = logLink.attr("href");
+
+            String contents;
+            if (href.equals("all")) {
+                contents = jenkinsConnectionFactory.createConnection("/log/rss").get().toString();
+            } else {
+                contents = jenkinsConnectionFactory.createConnection("/log/" + href + "rss").get().toString();
+            }
+
             LogModel logModel = new LogModel();
             logModel.setName(logLink.html());
-            logModel.setUrl(logLink.attr("href"));
+            logModel.setUrl(href);
+            logModel.setContents(contents);
 
             logs.add(logModel);
         }

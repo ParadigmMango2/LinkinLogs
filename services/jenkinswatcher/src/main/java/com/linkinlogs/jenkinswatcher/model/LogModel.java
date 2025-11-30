@@ -1,9 +1,6 @@
 package com.linkinlogs.jenkinswatcher.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -12,6 +9,10 @@ public class LogModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String name;
     private String url;
+
+    @Column(columnDefinition = "CLOB")
+    private String contents;
 }
