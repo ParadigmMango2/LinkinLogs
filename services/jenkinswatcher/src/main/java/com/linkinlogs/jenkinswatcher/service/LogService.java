@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class LogService {
     @Autowired
     JenkinsConnectionFactory jenkinsConnectionFactory;
 
+    @Scheduled(fixedRateString = "${jenkins.fetch.interval}") // fetch based on config
     @SneakyThrows
     public ResponseEntity<List<LogModel>> fetchLogs() {
         Connection connection = jenkinsConnectionFactory.createConnection("/log");

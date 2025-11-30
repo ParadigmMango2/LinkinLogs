@@ -16,10 +16,10 @@ public class LogController {
     @Autowired
     LogService logService;
 
-    @GetMapping("")
-    public ResponseEntity<String> getLog() {
-        return logService.getLog();
-    }
+//    @GetMapping("")
+//    public ResponseEntity<String> getLog() {
+//        return logService.getLog();
+//    }
 
     @GetMapping("fetch")
     public ResponseEntity<List<LogModel>> fetchLogs() {
