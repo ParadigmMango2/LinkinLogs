@@ -1,11 +1,13 @@
 package com.linkinlogs.jenkinswatcher.factory;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 @AllArgsConstructor
 public class JenkinsConnectionFactory {
+    @Getter
     private final String baseUrl;
     private final String encodedCredentials;
 

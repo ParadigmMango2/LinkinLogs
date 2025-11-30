@@ -49,7 +49,7 @@ public class LogService {
 
             LogModel logModel = new LogModel();
             logModel.setName(logLink.html());
-            logModel.setUrl(href);
+            logModel.setUrl(jenkinsConnectionFactory.getBaseUrl() + "/log/" + href);
             logModel.setContents(contents);
 
             logs.add(logModel);
