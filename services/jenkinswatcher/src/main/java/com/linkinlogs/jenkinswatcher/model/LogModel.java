@@ -15,6 +15,6 @@ public class LogModel {
     @Id
     private String url;
 
-    @Column(columnDefinition = "CLOB")
+    @Column(columnDefinition = "TEXT")
     private String contents;
 }
