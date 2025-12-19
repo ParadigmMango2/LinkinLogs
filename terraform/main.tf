@@ -29,3 +29,9 @@ module "jenkins" {
   jenkins_token = var.jenkins_token
   depends_on = [ minikube_cluster.docker, module.postgres-jenkins.pg_secret ]
 }
+
+module "linkinviewer" {
+  source = "./modules/linkinviewer"
+  replicas = 2
+  namespace = "viewer-ns"
+}

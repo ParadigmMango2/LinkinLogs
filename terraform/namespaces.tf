@@ -11,3 +11,9 @@ resource "kubernetes_namespace" "jenkins" {
     name = "jenkins-ns"
   }
 }
+
+resource "kubernetes_namespace" "viewer" {
+  metadata {
+    name = "viewer-ns"
+  }
+}
