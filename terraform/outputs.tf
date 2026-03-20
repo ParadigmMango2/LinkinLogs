@@ -6,3 +6,7 @@ output "minikube_host" {
 output "exported_jenkins_postgres_service_ip" {
   value = module.postgres-jenkins.postgres_service_ip
 }
+
+output "exported_viewer_svc" {
+  value = module.linkinviewer.viewer_svc
+}

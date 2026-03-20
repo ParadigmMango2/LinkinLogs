@@ -17,3 +17,10 @@ resource "kubernetes_namespace" "viewer" {
     name = "viewer-ns"
   }
 }
+
+resource "kubernetes_namespace" "gateway" {
+  metadata {
+    name = "gateway-ns"
+  }
+}
+

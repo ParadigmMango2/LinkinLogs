@@ -35,3 +35,9 @@ module "linkinviewer" {
   replicas = 2
   namespace = "viewer-ns"
 }
+
+module "gateway" {
+  source = "./modules/gateway"
+  viewer_svc = module.linkinviewer.viewer_svc
+  namespace = "gateway-ns"
+}
