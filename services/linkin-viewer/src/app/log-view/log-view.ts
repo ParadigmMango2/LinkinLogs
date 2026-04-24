@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-log-view',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './log-view.scss',
 })
 export class LogView {
+  tableHeaders = signal<string[]>([])
 
+  ngOnInit() {
+    this.tableHeaders.set(['1', '2', '3'])
+  }
 }
