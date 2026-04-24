@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LogView } from './log-view/log-view';
+import { LogView } from './components/log-view/log-view';
 
 @Component({
   selector: 'app-root',
