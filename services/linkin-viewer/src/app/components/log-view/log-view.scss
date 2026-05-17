@@ -1,0 +1,13 @@
+.table-container {
+  height: 400px;
+  overflow: auto;
+}
+
+.log-table {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+  &__data {
+    border: 1px solid black;
+  }
+}

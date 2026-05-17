@@ -1,20 +1,24 @@
 <p>log-view works!</p>
-<table>
-  <thead>
-    <tr>
-      @for (header of tableHeaders(); track header) {
-        <th>{{ header }}</th>
-      }
-    </tr>
-    @for (logLine of log(); track logLine) {
+<div class="table-container">
+  <table class="log-table">
+    <thead>
       <tr>
-        <td>{{ logLine.lineId }}</td>
-        <td>{{ logLine.time.toISOString() }}</td>
-        <td>{{ logLine.level }}</td>
-        <td>{{ logLine.content }}</td>
-        <td>{{ logLine.eventId }}</td>
-        <td>{{ logLine.eventTemplate }}</td>
+        @for (header of tableHeaders(); track header) {
+          <th>{{ header }}</th>
+        }
       </tr>
-    }
-  </thead>
-</table>
+    </thead>
+    <tbody>
+      @for (logLine of log(); track logLine) {
+        <tr>
+          <td class="log-table__data">{{ logLine.lineId }}</td>
+          <td class="log-table__data">{{ logLine.time.toISOString() }}</td>
+          <td class="log-table__data">{{ logLine.level }}</td>
+          <td class="log-table__data">{{ logLine.content }}</td>
+          <td class="log-table__data">{{ logLine.eventId }}</td>
+          <td class="log-table__data">{{ logLine.eventTemplate }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
