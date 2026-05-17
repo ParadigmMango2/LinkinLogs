@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { LogsService } from '../../services/logs-service';
 import { catchError } from 'rxjs';
+import { LogLine } from '../../models/log-line';
 
 @Component({
   selector: 'app-log-view',
@@ -11,11 +12,11 @@ import { catchError } from 'rxjs';
 export class LogView {
   logsService = inject(LogsService)
   tableHeaders = signal<string[]>([])
-  log = signal<String>('');
+  log = signal<LogLine[]>([]);
 
   ngOnInit(): void {
-    this.tableHeaders.set(['1', '2', '3'])
-
+    //LineId,Time,Level,Content,EventId,EventTemplate
+    this.tableHeaders.set(['Line ID', 'Time', 'Level', 'Content', 'Event ID', 'Event Template']);
 
     this.logsService
       .getLogsFromApi()
@@ -26,7 +27,7 @@ export class LogView {
         })
       )
       .subscribe((lines) => {
-        // this.log.set(lines);
+        this.log.set(lines);
       });
   }
 }

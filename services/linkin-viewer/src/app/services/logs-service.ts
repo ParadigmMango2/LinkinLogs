@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { map, tap } from 'rxjs';
 
 import Papa from 'papaparse';
-import { LogLevel } from '../models/log-line';
+import { LogLevel, LogLine } from '../models/log-line';
 
 @Injectable({
   providedIn: 'root',
@@ -38,10 +38,16 @@ export class LogsService {
           return value;
         },
       })),
-      tap((parsed) => console.log(parsed))
+      map((result) => result.data.map((row: any) => ({
+        lineId: row['LineId'],
+        time: row['Time'],
+        level: row['Level'],
+        content: row['Content'],
+        eventId: row['EventId'],
+        eventTemplate: row['EventTemplate']
+      }) as LogLine)),
+      // tap((parsed) => console.log(parsed))
     );
-
-    console.log(processed);
 
     return processed;
   }

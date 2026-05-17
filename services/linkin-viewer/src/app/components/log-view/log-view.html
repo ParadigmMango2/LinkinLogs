@@ -6,5 +6,15 @@
         <th>{{ header }}</th>
       }
     </tr>
+    @for (logLine of log(); track logLine) {
+      <tr>
+        <td>{{ logLine.lineId }}</td>
+        <td>{{ logLine.time.toISOString() }}</td>
+        <td>{{ logLine.level }}</td>
+        <td>{{ logLine.content }}</td>
+        <td>{{ logLine.eventId }}</td>
+        <td>{{ logLine.eventTemplate }}</td>
+      </tr>
+    }
   </thead>
 </table>
