@@ -1,0 +1,7 @@
+<p>range-slider-plus works!</p>
+<input matInput type="number" min="0" max="2000" [(ngModel)]="min" />
+<mat-slider min="0" max="2000">
+  <input [(ngModel)]="min" matSliderStartThumb>
+  <input [(ngModel)]="max" matSliderEndThumb>
+</mat-slider>
+<input matInput type="number" min="0" max="2000" [(ngModel)]="max" />

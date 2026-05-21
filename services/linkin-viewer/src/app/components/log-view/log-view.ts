@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { LogsService } from '../../services/logs-service';
 import { catchError } from 'rxjs';
 import { LogLine } from '../../models/log-line';
+import { RangeSliderPlus } from '../range-slider-plus/range-slider-plus';
 
 @Component({
   selector: 'app-log-view',
-  imports: [],
+  imports: [RangeSliderPlus],
   templateUrl: './log-view.html',
   styleUrl: './log-view.scss',
 })
