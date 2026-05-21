@@ -1,5 +1,5 @@
 <p>log-view works!</p>
-<app-range-slider-plus />
+<app-range-slider-plus [(min)]="lineMin" [(max)]="lineMax" />
 <div class="table-container">
   <table class="log-table">
     <thead>
@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (logLine of log(); track logLine) {
+      @for (logLine of log() | filterLogs: lineMin() : lineMax(); track logLine) {
         <tr>
           <td class="log-table__data">{{ logLine.lineId }}</td>
           <td class="log-table__data">{{ logLine.time.toISOString() }}</td>

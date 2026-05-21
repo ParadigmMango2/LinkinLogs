@@ -3,10 +3,11 @@ import { LogsService } from '../../services/logs-service';
 import { catchError } from 'rxjs';
 import { LogLine } from '../../models/log-line';
 import { RangeSliderPlus } from '../range-slider-plus/range-slider-plus';
+import { FilterLogsPipe } from '../../pipes/filter-logs-pipe';
 
 @Component({
   selector: 'app-log-view',
-  imports: [RangeSliderPlus],
+  imports: [RangeSliderPlus, FilterLogsPipe],
   templateUrl: './log-view.html',
   styleUrl: './log-view.scss',
 })
@@ -14,6 +15,8 @@ export class LogView {
   logsService = inject(LogsService)
   tableHeaders = signal<string[]>([])
   log = signal<LogLine[]>([]);
+  lineMin = signal<number>(0);
+  lineMax = signal<number>(100);
 
   ngOnInit(): void {
     //LineId,Time,Level,Content,EventId,EventTemplate
