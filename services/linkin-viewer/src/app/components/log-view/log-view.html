@@ -1,5 +1,13 @@
 <p>log-view works!</p>
 <app-range-slider-plus [(min)]="lineMin" [(max)]="lineMax" />
+<mat-form-field>
+  <mat-label>Levels</mat-label>
+  <mat-select [formControl]="levels" multiple>
+    @for (level of levelList; track level) {
+      <mat-option [value]="level">{{ level }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
 <div class="table-container">
   <table class="log-table">
     <thead>
